@@ -1,8 +1,9 @@
 import { Alert, StyleSheet, TextInput, View } from "react-native";
 import Button from "../components/Button";
 import { useState } from "react";
+import Colors from "../constants/color";
 
-const StartGame = () => {
+const StartGame = ({setnumber}) => {
     const [enterNumber, setEnterNumber] = useState('');
 
     const confirmInputHandler = () => {
@@ -17,6 +18,7 @@ const StartGame = () => {
                 [{text: 'Okay', style: 'destructive', onPress: () => setEnterNumber('')}]
             )
         }
+        setnumber(enterNumber)
     }
 
     return (
@@ -47,7 +49,7 @@ const styles = StyleSheet.create({
         marginTop: 100,
         marginHorizontal: 24,
         padding: 16,
-        backgroundColor: '#72060c',
+        backgroundColor: Colors.primary800,
         borderRadius: 8,
         elevation: 4,
         shadowColor: 'black',
@@ -62,8 +64,8 @@ const styles = StyleSheet.create({
         height: 50,
         fontSize: 32,
         borderBottomWidth: 2,
-        borderBottomColor: '#ddb52f',
-        color: '#ddb52f',
+        borderBottomColor: Colors.accent500,
+        color: Colors.accent500,
         marginVertical: 8,
         fontWeight: 'bold',
         textAlign: 'center'
