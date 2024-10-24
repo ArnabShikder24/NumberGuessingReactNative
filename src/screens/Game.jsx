@@ -18,16 +18,21 @@ function generateRandomBetween(min, max, exclude) {
 let minBoundary = 1;
 let maxBoundary = 100;
 
-const Game = ({ number }) => {
-    const initialGuess = generateRandomBetween(minBoundary, maxBoundary, number);
+const Game = ({ number, handleGameOver }) => {
+    const userNumber = parseInt(number);
+    const initialGuess = generateRandomBetween(minBoundary, maxBoundary, userNumber);
     const [currentGuess, setCurrentGuess] = useState(initialGuess);
 
-    
+    useEffect(() => {
+        if (currentGuess === userNumber) {
+            handleGameOver();
+        }
+    }, [currentGuess])
 
     const nextGuessHandler = (direction) => {
 
-        if ((direction === "lower" && currentGuess < number) 
-            || (direction === "greater" && currentGuess > number)) {
+        if ((direction === "lower" && currentGuess < userNumber) 
+            || (direction === "greater" && currentGuess > userNumber)) {
             Alert.alert("Don't lie!", "You know that this is wrong...", [
                 { text: "Sorry!", style: 'cancel' }
             ]);

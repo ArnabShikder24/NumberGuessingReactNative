@@ -4,14 +4,22 @@ import StartGame from './src/screens/StartGame';
 import { useState } from 'react';
 import Game from './src/screens/Game';
 import Colors from './src/constants/color';
+import GameOver from './src/screens/GameOver';
 
 export default function App() {
   const [number, setNumber] = useState(null);
+  const [gameIsOver, setGameIsOver] = useState(false);
 
-  let screen = <StartGame setNumber={setNumber} />;
+  const handleGameOver = () => setGameIsOver(true);
+
+  let screen = <StartGame setNumber={setNumber}/>;
 
   if (number !== null) {
-    screen = <Game number={number} />;
+    screen = <Game number={number} handleGameOver={handleGameOver} />;
+  }
+
+  if (gameIsOver) {
+    screen = <GameOver />;
   }
 
   return (
