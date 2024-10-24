@@ -1,9 +1,9 @@
 import { Alert, StyleSheet, TextInput, View } from "react-native";
-import Button from "../components/Button";
+import Button from "../components/ui/Button";
 import { useState } from "react";
 import Colors from "../constants/color";
 
-const StartGame = ({setnumber}) => {
+const StartGame = ({setNumber}) => {
     const [enterNumber, setEnterNumber] = useState('');
 
     const confirmInputHandler = () => {
@@ -18,7 +18,7 @@ const StartGame = ({setnumber}) => {
                 [{text: 'Okay', style: 'destructive', onPress: () => setEnterNumber('')}]
             )
         }
-        setnumber(enterNumber)
+        setNumber(enterNumber);
     }
 
     return (

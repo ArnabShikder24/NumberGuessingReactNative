@@ -1,6 +1,9 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Alert, StyleSheet, Text, View } from "react-native";
 import Colors from "../constants/color";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import Title from "../components/ui/Title";
+import Button from "../components/ui/Button";
+import NumberContainer from "../components/game/NumberContainer";
 
 function generateRandomBetween(min, max, exclude) {
     const rndNum = Math.floor(Math.random() * (max - min)) + min;
@@ -12,12 +15,45 @@ function generateRandomBetween(min, max, exclude) {
     }
 }
 
+let minBoundary = 1;
+let maxBoundary = 100;
+
 const Game = ({ number }) => {
-    const initialGuess = generateRandomBetween(1, 100, number);
-    const [currentGuess, setCureentGuess] = useState(initialGuess)
+    const initialGuess = generateRandomBetween(minBoundary, maxBoundary, number);
+    const [currentGuess, setCurrentGuess] = useState(initialGuess);
+
+    
+
+    const nextGuessHandler = (direction) => {
+
+        if ((direction === "lower" && currentGuess < number) 
+            || (direction === "greater" && currentGuess > number)) {
+            Alert.alert("Don't lie!", "You know that this is wrong...", [
+                { text: "Sorry!", style: 'cancel' }
+            ]);
+            return;
+        }
+        
+        if (direction === "lower") {
+            maxBoundary = currentGuess;
+        }else {
+            minBoundary = currentGuess + 1;
+        }
+        const newRndNumber = generateRandomBetween(minBoundary, maxBoundary, currentGuess);
+        setCurrentGuess(newRndNumber);
+    }
+
     return (
         <View style={styles.screens}>
-            <Text style={styles.title}>Opponent's Guess</Text>
+            <Title>Opponent's Guess</Title>
+            <NumberContainer>{currentGuess}</NumberContainer>
+            <View>
+                <Text style={{marginBottom: 5}}>Higher or Lower?</Text>
+                <View>
+                    <Button onPressHandle={() => nextGuessHandler("greater")} title="Greater" />
+                    <Button onPressHandle={() => nextGuessHandler("lower")} title="Lower" />
+                </View>
+            </View>
         </View>
     );
 };
