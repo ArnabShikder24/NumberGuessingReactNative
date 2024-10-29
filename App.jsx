@@ -19,7 +19,7 @@ export default function App() {
   }
 
   if (gameIsOver) {
-    screen = <GameOver />;
+    screen = <GameOver setGameIsOver={setGameIsOver} setNumber={setNumber} />;
   }
 
   return (

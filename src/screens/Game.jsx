@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Title from "../components/ui/Title";
 import Button from "../components/ui/Button";
 import NumberContainer from "../components/game/NumberContainer";
+import AntDesign from '@expo/vector-icons/AntDesign';
 
 function generateRandomBetween(min, max, exclude) {
     const rndNum = Math.floor(Math.random() * (max - min)) + min;
@@ -27,7 +28,7 @@ const Game = ({ number, handleGameOver }) => {
         if (currentGuess === userNumber) {
             handleGameOver();
         }
-    }, [currentGuess])
+    }, [currentGuess, userNumber])
 
     const nextGuessHandler = (direction) => {
 
@@ -55,8 +56,8 @@ const Game = ({ number, handleGameOver }) => {
             <View>
                 <Text style={{marginBottom: 5}}>Higher or Lower?</Text>
                 <View>
-                    <Button onPressHandle={() => nextGuessHandler("higher")} title="Higher" />
-                    <Button onPressHandle={() => nextGuessHandler("lower")} title="Lower" />
+                    <Button onPressHandle={() => nextGuessHandler("higher")} iconComponent={<AntDesign name="plus" size={22} color="white" />} />
+                    <Button onPressHandle={() => nextGuessHandler("lower")} iconComponent={<AntDesign name="minus" size={22} color="white" />} />
                 </View>
             </View>
         </View>
