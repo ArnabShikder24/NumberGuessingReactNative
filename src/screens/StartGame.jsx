@@ -1,7 +1,8 @@
-import { Alert, StyleSheet, TextInput, View } from "react-native";
+import { Alert, StyleSheet, TextInput, View, Text } from "react-native";
 import Button from "../components/ui/Button";
 import { useState } from "react";
 import Colors from "../constants/color";
+import Title from "../components/ui/Title";
 
 const StartGame = ({setNumber}) => {
     const [enterNumber, setEnterNumber] = useState(null);
@@ -22,31 +23,40 @@ const StartGame = ({setNumber}) => {
     }
 
     return (
-        <View style={styles.inputContainer}>
-            <TextInput
-                style={styles.numberInput}
-                maxLength={2}
-                keyboardType="number-pad"
-                onChangeText={text => setEnterNumber(text)}
-                value={enterNumber}
-            />
-            <View style={{ flexDirection: 'row' }}>
-                <View style={{flex: 1}}>
-                    <Button onPressHandle={() => setEnterNumber('')} title="Reset" />
+        <View style={styles.rootContainer}>
+            <Title>Guess My Number</Title>
+            <View style={styles.inputContainer}>
+                <Text style={{color: "#fff"}}>Enter a Number</Text>
+                <TextInput
+                    style={styles.numberInput}
+                    maxLength={2}
+                    keyboardType="number-pad"
+                    onChangeText={text => setEnterNumber(text)}
+                    value={enterNumber}
+                />
+                <View style={{ flexDirection: 'row' }}>
+                    <View style={{flex: 1}}>
+                        <Button onPressHandle={() => setEnterNumber('')} title="Reset" />
+                    </View>
+                    <View style={{flex: 1}}>
+                        <Button onPressHandle={confirmInputHandler} title="Confirm" />
+                    </View>
                 </View>
-                <View style={{flex: 1}}>
-                    <Button onPressHandle={confirmInputHandler} title="Confirm" />
-                </View>
-            </View>
-        </View> 
+            </View> 
+    </View>
     );
 };
 
 export default StartGame;
 
 const styles = StyleSheet.create({
+    rootContainer: {
+        flex: 1,
+        alignItems: "center",
+        marginTop: 100
+    },
     inputContainer: {
-        marginTop: 100,
+        marginTop: 20,
         marginHorizontal: 24,
         padding: 16,
         backgroundColor: Colors.primary800,

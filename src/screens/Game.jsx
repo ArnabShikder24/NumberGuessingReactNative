@@ -32,7 +32,7 @@ const Game = ({ number, handleGameOver }) => {
     const nextGuessHandler = (direction) => {
 
         if ((direction === "lower" && currentGuess < userNumber) 
-            || (direction === "greater" && currentGuess > userNumber)) {
+            || (direction === "higher" && currentGuess > userNumber)) {
             Alert.alert("Don't lie!", "You know that this is wrong...", [
                 { text: "Sorry!", style: 'cancel' }
             ]);
@@ -55,7 +55,7 @@ const Game = ({ number, handleGameOver }) => {
             <View>
                 <Text style={{marginBottom: 5}}>Higher or Lower?</Text>
                 <View>
-                    <Button onPressHandle={() => nextGuessHandler("greater")} title="Greater" />
+                    <Button onPressHandle={() => nextGuessHandler("higher")} title="Higher" />
                     <Button onPressHandle={() => nextGuessHandler("lower")} title="Lower" />
                 </View>
             </View>
