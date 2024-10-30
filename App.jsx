@@ -9,17 +9,18 @@ import GameOver from './src/screens/GameOver';
 export default function App() {
   const [number, setNumber] = useState(null);
   const [gameIsOver, setGameIsOver] = useState(false);
+  const [round, setRound] = useState(1);
 
   const handleGameOver = () => setGameIsOver(true);
 
   let screen = <StartGame setNumber={setNumber}/>;
 
   if (number !== null) {
-    screen = <Game number={number} handleGameOver={handleGameOver} />;
+    screen = <Game number={number} handleGameOver={handleGameOver} round={round} setRound={setRound} />;
   }
 
   if (gameIsOver) {
-    screen = <GameOver setGameIsOver={setGameIsOver} setNumber={setNumber} />;
+    screen = <GameOver setGameIsOver={setGameIsOver} round={round} setRound={setRound} userNumber={number} setNumber={setNumber} />;
   }
 
   return (

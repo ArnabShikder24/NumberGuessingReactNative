@@ -3,7 +3,7 @@ import Button from "../components/ui/Button";
 import success from "../../assets/images/success.png";
 import Colors from "../constants/color";
 
-const GameOver = ({ setGameIsOver, setNumber }) => {
+const GameOver = ({ setGameIsOver, round, setRound, userNumber, setNumber }) => {
     return (
         <View style={{flex: 1, alignItems: "center", justifyContent: "center"}}>
             <Text style={{ color: "#fff", fontSize: 24, marginBottom: 12 }}>Game is Over!</Text>
@@ -11,8 +11,9 @@ const GameOver = ({ setGameIsOver, setNumber }) => {
             <Button onPressHandle={() => {
                 setNumber(null);
                 setGameIsOver(false);
+                setRound(1);
             }} title="play Again" />
-            <Text style={{marginTop: 10, fontSize: 24, paddingHorizontal: 20, textAlign: "center"}}>Your phone need <Text style={{color: Colors.primary600}}>X</Text> Round to guess <Text style={{color: Colors.primary600}}>Y</Text> Number</Text>
+            <Text style={{ marginTop: 10, fontSize: 24, paddingHorizontal: 20, textAlign: "center" }}>Your phone need <Text style={{ color: Colors.primary600 }}>{round}</Text> Round to guess <Text style={{ color: Colors.primary600 }}>{userNumber}</Text> Number</Text>
         </View>
     );
 };

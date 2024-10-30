@@ -20,15 +20,14 @@ function generateRandomBetween(min, max, exclude) {
 let minBoundary = 1;
 let maxBoundary = 100;
 
-const Game = ({ number, handleGameOver }) => {
+const Game = ({ number, handleGameOver, round, setRound }) => {
     const userNumber = parseInt(number);
     const initialGuess = generateRandomBetween(1, 100, userNumber);
     const [currentGuess, setCurrentGuess] = useState(initialGuess);
     const [logs, setLogs] = useState([{
-        id: 1,
+        id: round,
         guess: initialGuess
     }]);
-    const [round, setRound] = useState(1);
 
     useEffect(() => {
         if (currentGuess === userNumber) {
