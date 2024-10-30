@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "NumberGuessingReactNative",
-    "slug": "NumberGuessingReactNative",
+    "name": "NumberGuessingGame",
+    "slug": "NumberGuessingGame",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
